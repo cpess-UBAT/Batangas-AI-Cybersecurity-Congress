@@ -690,6 +690,24 @@
             .tab-item.active { transform: translateY(0); }
             .qr-code-container { max-width: 300px; padding: 20px; }
         }
+
+        .program-image-container {
+            max-width: 900px; /* Controls the maximum display size of the image */
+            margin: 40px auto;
+            border: 2px solid #ff00ff; /* Magenta outer border */
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+            padding: 10px;
+            background: rgba(255, 0, 255, 0.1);
+            /* Futuristic clip-path shape */
+            clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+        }
+
+        .program-image-container img {
+            width: 100%; /* Ensures the image scales to fit the container */
+            height: auto;
+            display: block;
+            border: 1px solid #00d9ff; /* Inner neon border */
+        }
     </style>
 </head>
 <body>
@@ -992,8 +1010,3 @@ technology.66</p>
     </script>
 </body>
 </html>
-
-
-
-
-
