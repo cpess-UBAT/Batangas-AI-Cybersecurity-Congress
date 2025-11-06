@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Batangas AI & Cybersecurity Congress 2025</title>
     <style>
-        /* Base and Background Styles (Unchanged) */
+        /* Base and Background Styles */
         * {
             margin: 0;
             padding: 0;
@@ -73,6 +73,22 @@
             position: relative;
         }
 
+        .header-image-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            overflow: hidden;
+            border: 3px solid #00d9ff;
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+            clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
+        }
+
+        .header-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         header::after {
             content: '';
             position: absolute;
@@ -135,7 +151,7 @@
             text-transform: uppercase;
         }
 
-        /* --- New Tab Navigation Styles --- */
+        /* Tab Navigation Styles */
         .tabs-nav {
             display: flex;
             justify-content: center;
@@ -181,18 +197,17 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: #0a0e27; /* Hide border-bottom on active tab */
+            background: #0a0e27;
             z-index: 3;
         }
 
-        /* Styles for the sections that will be toggled */
         .main-section {
-            display: none; /* All sections hidden by default */
+            display: none;
             animation: fadeIn 0.5s ease-in-out;
         }
 
         .main-section.active {
-            display: block; /* Only the active section is shown */
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -210,7 +225,6 @@
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
         }
 
-        /* Ensuring all sub-sections of the tabs also fit the styling */
         .section {
             margin: 40px 0;
             padding: 40px;
@@ -220,7 +234,6 @@
             position: relative;
         }
         
-        /* Ensure the main h2 tags inside the main-section content are styled correctly */
         h2 {
             font-size: 36px;
             margin: 30px 0 30px;
@@ -380,38 +393,29 @@
             align-items: center;
             color: transparent;
             font-size: 10px;
-            
-            /* Styles for image insertion */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-blend-mode: normal; 
         }
-        /* 1. Mr. Jerry Sto. Tomas */
+
+        /* Speaker Photos */
         .speaker-jerry .speaker-photo-inner {
             background-image: url('8bf00dbf-f4f1-4381-bd97-390cbe5c0e16 (2).jpg');
         }
 
-        /* 2. Ms. Elvie Pita */
         .speaker-elvie .speaker-photo-inner {
-            /* **REPLACE 'elvie-photo.jpg' with the actual file name for Elvie** */
             background-image: url('c19e6e19-b231-4892-a10a-852aadd645a2 (1).jpg'); 
         }
 
-        /* 3. Engr. John Francis Nacional */
         .speaker-johnfrancis .speaker-photo-inner {
-            /* **REPLACE 'johnfrancis-photo.jpg' with the actual file name for John Francis** */
             background-image: url('577620126_851665863877662_3407797244410410849_n.jpg');
         }
 
-        /* 4. Engr. John Elmer Santos */
         .speaker-johnelmer .speaker-photo-inner {
-            /* **REPLACE 'johnelmer-photo.jpg' with the actual file name for John Elmer** */
             background-image: url('566593844_1740275639978082_5798005922789543004_n.jpg');
         }
 
-        
-        /* Speaker Info Styles (Unchanged) */
         .speaker-info {
             flex: 1;
             min-width: 250px;
@@ -437,7 +441,6 @@
             line-height: 1.8;
         }
 
-        /* ... [Remaining CSS for ul, li, registration-box, cta-button, contact-grid, countdown, and media queries] ... */
         ul {
             list-style: none;
             padding: 20px 0;
@@ -616,6 +619,66 @@
             text-transform: uppercase;
         }
 
+        .qr-code-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            background: rgba(0, 217, 255, 0.05);
+            border: 3px solid #00d9ff;
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+            position: relative;
+        }
+
+        .qr-code-container::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 20px;
+            height: 20px;
+            border-top: 3px solid #00d9ff;
+            border-left: 3px solid #00d9ff;
+        }
+
+        .qr-code-container::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            border-bottom: 3px solid #ff00ff;
+            border-right: 3px solid #ff00ff;
+        }
+
+        .qr-code-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 2px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .evaluation-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #ccc;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(0, 217, 255, 0.03);
+            border-left: 4px solid #00d9ff;
+            border-right: 4px solid #ff00ff;
+        }
+
+        .evaluation-description strong {
+            color: #00ffaa;
+            font-size: 20px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 32px; }
             h2 { font-size: 28px; }
@@ -625,6 +688,7 @@
             .tabs-nav { flex-direction: column; }
             .tab-item { width: 100%; text-align: center; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
             .tab-item.active { transform: translateY(0); }
+            .qr-code-container { max-width: 300px; padding: 20px; }
         }
     </style>
 </head>
@@ -634,6 +698,10 @@
 
     <div class="container">
         <header>
+            <div class="header-image-container">
+                <!-- Replace 'YOUR-HEADER-IMAGE-URL-HERE' with your actual header image URL -->
+                <img src="Header.png" alt="Batangas AI & Cybersecurity Congress Header">
+            </div>
             <div class="logos">
                 <div class="logo-text">CPESS</div>
                 <div class="divider">×</div>
@@ -647,6 +715,7 @@
             <a class="tab-item active" data-target="overview">Overview</a>
             <a class="tab-item" data-target="speakers">Speakers</a>
             <a class="tab-item" data-target="topics">Topics</a>
+            <a class="tab-item" data-target="program-flow">Program Flow</a>
             <a class="tab-item" data-target="registration">Registration</a>
             <a class="tab-item" data-target="contact">Contact</a>
         </nav>
@@ -908,7 +977,3 @@ technology.66</p>
     </script>
 </body>
 </html>
-
-
-
-
