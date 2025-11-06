@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batangas AI & Cybersecurity Congress 2025</title>
+    <style>
+        /* Base and Background Styles (Unchanged) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', 'Rajdhani', sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #00d9ff;
+            border-radius: 50%;
+            animation: float-particle 8s infinite ease-in-out;
+            box-shadow: 0 0 10px #00d9ff;
+        }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            50% { transform: translateY(-100px) translateX(50px); opacity: 1; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 20px 0;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00d9ff, #ff00ff, #00d9ff, transparent);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #00d9ff, #00ffaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+        }
+
+        .divider {
+            color: #00d9ff;
+            font-size: 26px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin: 30px 0 20px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            background: linear-gradient(90deg, #00d9ff 0%, #ff00ff 50%, #00d9ff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+            text-shadow: 0 0 40px rgba(0, 217, 255, 0.8);
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: #00ffaa;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- New Tab Navigation Styles --- */
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            border-bottom: 2px solid rgba(0, 217, 255, 0.3);
+            gap: 10px;
+        }
+
+        .tab-item {
+            padding: 15px 30px;
+            color: #ccc;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-bottom: none;
+            position: relative;
+            transition: all 0.3s ease;
+            clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+        }
+
+        .tab-item:hover {
+            color: #00d9ff;
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        .tab-item.active {
+            color: #00ffaa;
+            border-color: #00d9ff;
+            background: rgba(0, 217, 255, 0.1);
+            box-shadow: 0 -5px 20px rgba(0, 217, 255, 0.4);
+            transform: translateY(-5px);
+            z-index: 2;
+        }
+
+        .tab-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #0a0e27; /* Hide border-bottom on active tab */
+            z-index: 3;
+        }
+
+        /* Styles for the sections that will be toggled */
+        .main-section {
+            display: none; /* All sections hidden by default */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .main-section.active {
+            display: block; /* Only the active section is shown */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-section {
+            margin: 0;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(255, 0, 255, 0.05));
+            border: 2px solid transparent;
+            border-image: linear-gradient(135deg, #00d9ff, #ff00ff) 1;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+        }
+
+        /* Ensuring all sub-sections of the tabs also fit the styling */
+        .section {
+            margin: 40px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.9), rgba(0, 217, 255, 0.02));
+            border-left: 3px solid #00d9ff;
+            border-right: 3px solid #ff00ff;
+            position: relative;
+        }
+        
+        /* Ensure the main h2 tags inside the main-section content are styled correctly */
+        h2 {
+            font-size: 36px;
+            margin: 30px 0 30px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #00d9ff;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .event-item {
+            padding: 25px;
+            background: rgba(0, 217, 255, 0.03);
+            border: 1px solid #00d9ff;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .event-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: #00d9ff;
+            box-shadow: 0 0 10px #00d9ff;
+        }
+
+        .event-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        .event-item:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 217, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        .event-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .event-text {
+            font-size: 18px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            background: #ff00ff;
+            box-shadow: 0 0 20px #ff00ff;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .section::before,
+        .section::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00d9ff;
+        }
+
+        .section::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .section::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .speaker-card {
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(255, 0, 255, 0.05));
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+            transition: all 0.3s ease;
+        }
+
+        .speaker-card:hover {
+            transform: translateX(10px);
+            box-shadow: -10px 10px 40px rgba(0, 217, 255, 0.3);
+            border-color: #00d9ff;
+        }
+
+        .speaker-photo {
+            flex-shrink: 0;
+            width: 180px;
+            height: 180px;
+            position: relative;
+        }
+
+        .speaker-photo::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid #00d9ff;
+            border-radius: 50%;
+            animation: rotate-border 4s linear infinite;
+        }
+
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .speaker-photo-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #0a0e27;
+            background: linear-gradient(135deg, #1a2744, #0d3a52);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.5), inset 0 0 20px rgba(0, 217, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: transparent;
+            font-size: 10px;
+            
+            /* Styles for image insertion */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-blend-mode: normal; 
+        }
+
+        /* * CUSTOM CSS FOR UNIQUE SPEAKER PHOTOS *
+        * Update the 'url()' paths below with the actual file names for your speakers.
+        */
+
+        /* 1. Mr. Jerry Sto. Tomas */
+        .speaker-jerry .speaker-photo-inner {
+            background-image: url('8bf00dbf-f4f1-4381-bd97-390cbe5c0e16 (1).jpg');
+        }
+
+        /* 2. Ms. Elvie Pita */
+        .speaker-elvie .speaker-photo-inner {
+            /* **REPLACE 'elvie-photo.jpg' with the actual file name for Elvie** */
+            background-image: url('c19e6e19-b231-4892-a10a-852aadd645a2.jpg'); 
+        }
+
+        /* 3. Engr. John Francis Nacional */
+        .speaker-johnfrancis .speaker-photo-inner {
+            /* **REPLACE 'johnfrancis-photo.jpg' with the actual file name for John Francis** */
+            background-image: url('577620126_851665863877662_3407797244410410849_n.jpg');
+        }
+
+        /* 4. Engr. John Elmer Santos */
+        .speaker-johnelmer .speaker-photo-inner {
+            /* **REPLACE 'johnelmer-photo.jpg' with the actual file name for John Elmer** */
+            background-image: url('566593844_1740275639978082_5798005922789543004_n.jpg');
+        }
+
+        
+        /* Speaker Info Styles (Unchanged) */
+        .speaker-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .speaker-name {
+            font-size: 28px;
+            color: #00d9ff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .speaker-title {
+            font-size: 18px;
+            color: #00ffaa;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .speaker-desc {
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        /* ... [Remaining CSS for ul, li, registration-box, cta-button, contact-grid, countdown, and media queries] ... */
+        ul {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #00d9ff;
+            font-size: 24px;
+            animation: pulse-arrow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-arrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        .registration-box {
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 217, 255, 0.1));
+            border: 2px solid #00d9ff;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+        }
+
+        .registration-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 30px 30px 0;
+            border-color: transparent #00d9ff transparent transparent;
+        }
+
+        .registration-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 30px 0 0 30px;
+            border-color: transparent transparent transparent #ff00ff;
+        }
+
+        .reg-steps {
+            margin: 20px 0;
+        }
+
+        .reg-step {
+            padding: 15px;
+            margin: 15px 0;
+            background: rgba(0, 217, 255, 0.05);
+            border-left: 4px solid #00d9ff;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .reg-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: #00d9ff;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            margin: 20px 10px;
+            background: linear-gradient(135deg, #00d9ff, #ff00ff);
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(0, 217, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.6);
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            padding: 15px 30px;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid #00d9ff;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        }
+
+        .contact-item a {
+            color: #00d9ff;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #ff00ff;
+        }
+
+        .countdown-box {
+            padding: 20px 30px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 0, 255, 0.1));
+            border: 2px solid #00d9ff;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            position: relative;
+            min-width: 120px;
+        }
+
+        .countdown-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: #00d9ff;
+            box-shadow: 0 0 15px #00d9ff;
+        }
+
+        .countdown-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: #ff00ff;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+
+        .countdown-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #00d9ff;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: #00ffaa;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 32px; }
+            h2 { font-size: 28px; }
+            .speaker-card { flex-direction: column; text-align: center; }
+            .countdown-number { font-size: 36px; }
+            .countdown-box { padding: 15px 20px; min-width: 100px; }
+            .tabs-nav { flex-direction: column; }
+            .tab-item { width: 100%; text-align: center; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            .tab-item.active { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <header>
+            <div class="logos">
+                <div class="logo-text">CPESS</div>
+                <div class="divider">×</div>
+                <div class="logo-text">University of Batangas</div>
+            </div>
+            <h1>Batangas AI & Cybersecurity Congress</h1>
+            <p class="subtitle">Artificial Intelligence and Cybersecurity: Innovations and Implications</p>
+        </header>
+
+        <nav class="tabs-nav">
+            <a class="tab-item active" data-target="overview">Overview</a>
+            <a class="tab-item" data-target="speakers">Speakers</a>
+            <a class="tab-item" data-target="topics">Topics</a>
+            <a class="tab-item" data-target="registration">Registration</a>
+            <a class="tab-item" data-target="contact">Contact</a>
+        </nav>
+        
+        <div id="overview" class="main-section active">
+            <div class="hero-section">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h2 style="margin: 0 0 20px 0; padding: 0; font-size: 28px; letter-spacing: 3px;">EVENT COUNTDOWN</h2>
+                    <div id="countdown" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="days">00</div>
+                            <div class="countdown-label">DAYS</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="hours">00</div>
+                            <div class="countdown-label">HOURS</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="minutes">00</div>
+                            <div class="countdown-label">MINUTES</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="seconds">00</div>
+                            <div class="countdown-label">SECONDS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-grid">
+                    <div class="event-item">
+                        <span class="event-icon">📅Date</span>
+                        <div class="event-text">November 7, 2025</div>
+                    </div>
+                    <div class="event-item">
+                        <span class="event-icon">⏰Time</span>
+                        <div class="event-text">08:00 AM - 05:00 PM</div>
+                    </div>
+                    <div class="event-item">
+                        <span class="event-icon">📍Location</span>
+                        <div class="event-text">UB Auditorium</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" id="mission-brief-content">
+                <h2>Mission Brief</h2>
+                <p style="font-size: 18px; line-height: 1.8;">Join us for a groundbreaking exploration of the intersection between "Artificial Intelligence and Cybersecurity". This premier congress brings together industry leaders, researchers, and students to discuss the latest innovations, challenges, and implications in these rapidly evolving fields.</p>
+            </div>
+        </div>
+        
+        <div id="speakers" class="main-section">
+            <h2 style="margin-top: 0;">Featured Speakers</h2>
+
+            <div class="speaker-card speaker-jerry">
+                <div class="speaker-photo">
+                    <div class="speaker-photo-inner"></div>
+                </div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Mr. Jerry Sto. Tomas</div>
+                    <div class="speaker-title">CEO - FusionNode, Inc.</div>
+                    <p class="speaker-desc">Industry leader in technology innovation and cybersecurity solutions with extensive experience in enterprise security architecture.</p>
+                </div>
+            </div>
+
+            <div class="speaker-card speaker-elvie">
+                <div class="speaker-photo">
+                    <div class="speaker-photo-inner"></div>
+                </div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Ms. Elvie Pita</div>
+                    <div class="speaker-title">Head of the Innovative Learning Unit - University of Batangas</div>
+                    <p class="speaker-desc">Expert in educational technology and innovative learning methodologies, pioneering AI integration in education.</p>
+                </div>
+            </div>
+
+            <div class="speaker-card speaker-johnfrancis">
+                <div class="speaker-photo">
+                    <div class="speaker-photo-inner"></div>
+                </div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Mr. Anthony Vhic R. Cedo, LPT</div>
+                    <div class="speaker-title">Education Technology Operations Manager Rakso Computer Technology, Inc. (RAKSO CT)</div>
+                    <p class="speaker-desc">Anthony Vhic Cedo is a licensed professional teacher with over four years of teaching experience.
+He graduated cum laude with a Bachelor of Secondary Education, major in Social Studies, from
+Jose Rizal University, where he is currently pursuing his Master of Arts in Educational
+Administration.
+He previously served as a Senior High School faculty member at the College of San Benildo-Rizal,
+where he taught various social science subjects. He also participated in the Data Science and
+Analytics Program of the Private Education Assistance Committee (PEAC), in partnership with the
+Lee Kuan Yew School of Public Policy at the National University of Singapore.
+As a multi-certified education technology advocate, Anthony has conducted numerous training
+sessions for school leaders, faculty, staff, and students on educational technology, productivity
+tools, and artificial intelligence in education. He also serves as a national trainer for the National
+Educators Association of the Philippines (NEAP), where he conducts training for DepEd school
+leaders, including principals, division and regional chiefs, and public schools district supervisors.
+Currently serving as Education Technology Operations Manager, Anthony is passionate about
+empowering students, educators, and school leaders through the innovative use of educational
+technology.66</p>
+                </div>
+            </div>
+
+            <div class="speaker-card speaker-johnelmer">
+                <div class="speaker-photo">
+                    <div class="speaker-photo-inner"></div>
+                </div>
+                <div class="speaker-info">
+                    <div class="speaker-name">Mr.Carlo Alviar</div>
+                    <div class="speaker-title">Systems Engineering Expert</div>
+                    <p class="speaker-desc">With, 15 years of ICT experience working as a Technical Sales for international and local IT comapnies in the Philippines.
+                    Currently employed as a Solution Consultant for Cybersecurity under Globe Business.
+                    Worked as a Product Specialist under the New Business and Product Department of ANTlabs.
+                    Worked for Bee Information Technology PH Inc. as a Product Manager for Data Center. Responsible for brand awareness, solution reviews and sales team support.
+                    Holding Certifications for Cloud Services, Wired & Wireless and Cybersecurity services</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="topics" class="main-section">
+            <div class="section" style="margin-top: 0;">
+                <h2>Core Topics</h2>
+                <ul>
+                    <li>AI-powered threat detection and response systems</li>
+                    <li>Machine learning algorithms in cybersecurity</li>
+                    <li>Ethical implications of autonomous AI systems</li>
+                    <li>Privacy protection and data security protocols</li>
+                    <li>Future trajectories of secure AI architecture</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Target Operatives</h2>
+                <ul>
+                    <li>Computer engineering students and researchers</li>
+                    <li>Cybersecurity professionals and analysts</li>
+                    <li>AI researchers and machine learning engineers</li>
+                    <li>Technology enthusiasts and innovators</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="registration" class="main-section">
+            <div class="section" style="margin-top: 0;">
+                <h2>Registration Protocol</h2>
+                
+                <div class="reg-steps">
+                    <div class="reg-step" data-step="01">Fill out the Google Forms to register</div>
+                    <div class="reg-step" data-step="02">Pay through GCash provided in the Google Forms</div>
+                    <div class="reg-step" data-step="03">Confirmation and further details will be sent to your registered email</div>
+                    <div class="reg-step" data-step="04">Follow the CPESS UBat Facebook Page and keep your notifications open for updates</div>
+                </div>
+
+                <div class="registration-box">
+                    <h3 style="color: #00d9ff; font-size: 24px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">Early Registration (Until Oct 31, 2025)</h3>
+                    <p style="font-size: 18px; margin-bottom: 10px; color: #00ffaa;">Inclusive of Seminar Kit</p>
+                    <p style="font-size: 16px; margin-bottom: 10px; color: #d8dada;">ID</p>
+                    <p style="font-size: 16px; margin-bottom: 10px; color: #d8dada;">Lace</p>
+                    <p style="font-size: 16px; margin-bottom: 10px; color: #d8dada;">Pen</p>
+                    <p style="font-size: 16px; margin-bottom: 10px; color: #d8dada;">NoteBook</p>
+                    <p style="font-size: 16px; margin-top: 20px;">For more queries, you may email at <strong style="color: #00d9ff;">cpess@ub.edu.ph</strong></p>
+                    <p style="font-size: 16px;">or contact <strong style="color: #00d9ff;">Rica Paulyn Barredo</strong> via mobile <strong style="color: #00d9ff;">09673048349</strong></p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2 style="margin: 0 0 20px 0; padding: 0;">Initiate Registration</h2>
+                <p style="font-size: 20px; margin-bottom: 30px; color: #00ffaa;">Secure your spot in this transformative event</p>
+                
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc34j2OzIyu5sjMYawQZbzC7JDunj-GWVKH8wCZKlL103BSAw/viewform" class="cta-button" target="_blank">Register Now</a>
+            </div>
+        </div>
+
+        <div id="contact" class="main-section">
+            <div class="cta-section" style="margin-top: 0;">
+                <h2 style="margin: 0 0 20px 0; padding: 0;">Establish Contact</h2>
+                <p style="font-size: 20px; margin-bottom: 30px; color: #00ffaa;">Connect with the organizing committee for support.</p>
+            </div>
+            
+            <footer style="margin-top: 0; border: none;">
+                <p style="font-size: 24px; margin-bottom: 20px; letter-spacing: 2px; color: #00d9ff;">Computer Engineering Student's Society</p>
+                <p style="font-size: 18px; margin-bottom: 30px;">University of Batangas</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span style="margin-right: 10px;">📘</span>
+                        <a href="https://facebook.com/CPESSUBat" target="_blank">CPESS UBat</a>
+                    </div>
+                    <div class="contact-item">
+                        <span style="margin-right: 10px;">✉️</span>
+                        <a href="mailto:cpess@ub.edu.ph">cpess@ub.edu.ph</a>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 40px; opacity: 0.6; letter-spacing: 1px;">© 2025 CPESS - University of Batangas. All rights reserved.</p>
+                <p style="margin-top: 40px; opacity: 0.6; letter-spacing: 1px;">© Created by: Engr. Xiao Villacrusis.</p>    
+            </footer>
+        </div>
+    </div>
+    
+    <script>
+        // Tab Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-item');
+            const sections = document.querySelectorAll('.main-section');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and sections
+                    tabs.forEach(t => t.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+
+                    // Add active class to the clicked tab
+                    tab.classList.add('active');
+
+                    // Show the corresponding section
+                    const targetId = tab.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+
+            // Countdown Timer
+            const eventDate = new Date('November 7, 2025 08:00:00').getTime();
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = eventDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the results
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+                // If the countdown is finished
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('countdown').innerHTML = "<div style='color:#ff00ff; font-size:28px;'>EVENT IS LIVE!</div>";
+                }
+            };
+
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
+
+            // Particle generation (optional)
+            const particleContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.animationDelay = `${Math.random() * 8}s`;
+                particleContainer.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
